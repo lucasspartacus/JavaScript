@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*function ola(){
+           let nome = prompt('Qual seu nome ?');
+           alert(`Olá ${nome} `)
+           
+           let confirmacao = confirm('Confirmar operação ?');
+           if (confirmacao) {
+            alert('Confirmado')
+           }
+           else{
+            alert('Negado')
+           }
+         }  */
+       onload = () => {
+        /*let button = document.getElementById('bt');
+        bt.innerHTML = '<strong>Olá mundo!</strong>';
+        bt.style.backgroundColor = '#FF0000';
+        alert(bt.getAttribute('class'));  */
+
+            bt.onclick = () =>{
+                alert('Vai toma no cu geral');
+            }
+            nome.onblur =() =>{
+                if (nome.value=="") {
+                    nome_erro.innerHTML = '!';
+                    nome.style.borderColor = "#F00"
+                }else{
+                    nome_erro.innerHTML = '';
+                    nome.style.borderColor= "#FFF"            
+                }
+                if (nome.value!='' && senha.value!='') {
+                    btnsubmit.disabled = false;
+                }
+                else btnsubmit.disabled = true;
+            }
+            senha.onblur =() =>{
+                if (senha.value=="") {
+                    senha_erro.innerHTML = '!';
+                    senha.style.borderColor = "#F00"
+                }else{
+                    senha_erro.innerHTML = '';
+                    senha.style.borderColor = "#FFF"
+                }
+                if (nome.value!='' && senha.value!='') {
+                    btnsubmit.disabled = false;
+                }
+                else btnsubmit.disabled = true;
+            }
+            login.onsubmit = () => {
+                if (nome.value=="" || senha.value=="" ) {
+                    alert('Dados vazio');
+                }else{  
+                    mensagem.innerText = `Você está logado como ${nome.value}`;
+                    login.style.display ='none';   
+                }
+                return false;
+            } 
+        
+       };
+  
+    </script>
+</head>
+<body>
+    <p>
+        <button id="bt" class="butaozinho">Olá em JavaScript</button>
+    </p>
+
+    <form id="login" action="login.html">
+        <p> 
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nomeUsuario" placeholder="Digite seu nome">
+            <span id="nome_erro"></span>
+        </p>
+        <p>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senhaUsuario" placeholder="Digite sea senha">
+            <span id="senha_erro"></span>
+        </p>
+        <p><button type="submit" class="btnsubmit" disabled id="btnsubmit">Enviar</button></p>
+        
+    </form>
+    <span id="mensagem"></span>
+</body>
+</html>

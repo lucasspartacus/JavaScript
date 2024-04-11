@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api web Geolocalização</title>
+    <script>
+        let geo = navigator.geolocation;
+        let geoCoords = (posicao) =>{
+            let lat = posicao.coords.latitude;
+            let lng = posicao.coords.longitude;
+            output.innerHTML =`As suas coordenadas são: ${lat}, ${lng}`
+            console.log(`${lat}, ${lng}`);
+        }
+
+        const geoErro = (erro)=>{
+            console.log(erro);
+        }
+
+        geo.getCurrentPosition(geoCoords, geoErro); 
+
+        let watchID =  geo.watchPosition(geoCoords, geoErro); //Monitoramento constante da posicção
+        btn.onclick =  () => {geo.clearWatch(watchID);}; //Para o monitoramento 
+    </script>
+</head>
+<body>
+    <h1>Api web Geolocalização</h1>
+    <p id="output"></p>
+
+    <button id="btn">Cancelar</button>
+</body>
+</html>

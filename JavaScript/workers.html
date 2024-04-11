@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers</title>
+    
+    <script>
+        //Worker são codigos executados em segundo plano paralelamentes ao código principal
+        let wk = new Worker('soma.js');
+        wk.postMessage([10,3]);
+        wk.onmessage =function(evento){
+            soma.innerHTML = `${evento.data}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Workers</h1>
+    <p>A soma dos valores é:  <span id="soma"></span></p>
+</body>
+</html>

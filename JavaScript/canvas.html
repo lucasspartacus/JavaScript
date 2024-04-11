@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <style>
+        #desenho{
+            border: thin solid black;
+        }
+    </style>
+    <Script>
+        onload = () => {
+            if (desenho.getContext) {
+                let ctx = desenho.getContext('2d');
+                /*Retangulo ----------------------------------------------------------------------------------------------------------------------------
+                ctx.fillRect(25, 25, 100, 100); //Cria um retangulo preemchido(stokeRect seria o vazio)
+                ctx.clearRect(45, 45, 60, 60); */
+                /*Triangulo e outras formas geometricas ------------------------------------------------------------------------------------------------
+                ctx.beginPath();
+                ctx.moveTo(75,50);
+                ctx.lineTo(100,75);
+                ctx.lineTo(100,25);
+                ctx.fill(); */
+                //Circunferencias ----------------------------------------------------------------------------------------------------------------------
+                ctx.lineWidth =4;
+                ctx.beginPath();
+                ctx.strokeStyle = 'red';
+                ctx.arc(75, 75, 50, 0, 2*Math.PI);
+                ctx.stroke();
+            }
+        } 
+    </Script>
+</head>
+<body>
+    <h1>Canvas</h1>
+    <canvas id="desenho" width="300" height="150">
+        SEU NAVEGADOR NÃO SUPOSTA CANVAS
+    </canvas>
+</body>
+</html>

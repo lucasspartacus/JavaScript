@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File</title>
+
+    <style>
+        .foto{
+            width: 100px;
+            height: 100px;
+        }
+        .zona{
+            float: left;
+            margin-right: 2em;
+            border: thick dashed;
+            width:  220px;
+            height: 220px;
+        }
+        .red{
+            border-color: #f33;
+        }
+        .blue{
+            border-color: #33f;
+        }
+        .zona-over {
+            opacity: 0.5;
+        }
+    </style>
+    <script>
+        onload = () =>{
+
+            //Varios arquivos do tipo imagem --------------------------------------------------------------------------------------------------
+            arquivos.onchange = () =>{
+                arqs.innerHTML = Array.from(arquivos.files).map((f) =>f.name).join('<br/>');   
+                let nomeimg = Array.from(arquivos.files).map((f) =>f.name).toString();
+                console.log(nomeimg);
+                foto.innerHTML = `<img src="img/${nomeimg}" />`;            
+            }
+ 
+            btnarquivos.onclick = () =>{
+                arquivos.click();
+            }
+
+            //Um arquivo do tipo texto -------------------------------------------------------------------------------------------------------
+
+            arquivo.onchange = () =>{
+               let fr = new FileReader();
+               fr.readAsText(arquivo.files[0], 'UTF-8');
+               
+               fr.onload = (evento) =>{
+                arqs.innerHTML = evento.target.result;
+               }
+            }
+
+            btnarquivo.onclick = () =>{
+                arquivo.click();
+            }
+
+            //Drag and drop objetos entre zonas -----------------------------------------------------------------------------------------------------
+            
+            foto.ondragstart = (e) =>{
+                e.dataTransfer.setData("text/plain", foto.id);
+            }
+
+            for (const z of document.querySelectorAll('.zona')) {
+                z.ondragover = (evento) =>{
+                    evento.preventDefault();
+                    z.classList.add('zona-over');
+                }
+                z.ondragleave = (evento) =>{
+                    evento.preventDefault();
+                    z.classList.remove('zona-over');
+                }
+
+                z.ondrop = (evento) =>{
+                    evento.preventDefault();
+                    const id = evento.dataTransfer.getData('text/plain');
+                    const elem = document.getElementById(id);
+                    z.appendChild(elem);
+                    z.classList.remove('zona-over');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <h1>File</h1>
+    <input id="arquivos" multiple type="file" style="display: none;" accept="image/*">
+    <button id="btnarquivos">Selecionar arquivos</button>
+    <input id="arquivo"  type="file" style="display: none;" accept="text/plain">
+    <button id="btnarquivo">Selecionar texto</button>
+    <p id="arqs"></p>
+    <div id="zona1" class="zona red">
+        <p id="foto" class="foto" draggable="true"></p>
+    </div>
+    <div id="zona2" class="zona blue"> </div>
+  
+</body>
+</html>

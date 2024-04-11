@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+    <Script>
+   /*     
+    let usuario = {
+        nome: 'Viviane',
+        idade: 48,
+        filhos: [
+            {
+                nome: 'Lucas',
+                idade: 21
+            },
+            {
+                nome: 'pedro',
+                idade: 12
+            }
+        ]
+     }
+        localStorage.setItem('usuario', JSON.stringify(usuario)) //Armazenamento do objeto usuario localmente
+
+        let strUsuario = localStorage.getItem('usuario'); 
+        let voltaObj = JSON.parse(strUsuario);
+        console.log(voltaObj, typeof strUsuario);
+
+   */
+        function ajax(){
+            try{
+               let xhttp = new XMLHttpRequest();  
+               xhttp.onreadystatechange = () => {
+                if(xhttp.readyState == 4){
+                    if (xhttp.status == 200) {
+                        let objusuario = JSON.parse(xhttp.responseText);
+                        nome.innerHTML = objusuario.data.map((e) => e.first_name).join(', ');
+                        console.log(objusuario);
+                    }
+                 }
+               };
+
+               xhttp.open('GET', 'https://reqres.in/api/users', true);
+               xhttp.send();
+            }catch(e){
+                alert('Erro na comunicação com o servidor');
+            }
+        }
+        function ajaxcreate(){
+            try{
+               let xhttp = new XMLHttpRequest();  
+               xhttp.onreadystatechange = () => {
+                if(xhttp.readyState == 4){
+                    let objusuario = JSON.parse(xhttp.responseText);      
+                    console.log(objusuario);      
+                 }
+               };
+
+               let usuario ={
+                first_name: nome.value,
+                email: email.value 
+               }
+
+               xhttp.open('POST', 'https://reqres.in/api/users', true);
+               xhttp.send(JSON.stringify(usuario));
+    
+            }catch(e){
+                alert('Erro na comunicação com o servidor');
+            }
+        }
+    </Script>
+</head>
+<body>
+<h1>Json local storage</h1>
+<button onclick="ajax()">Carregar usuario</button>
+<dl>
+    <dt>Nome:</dt><dd id="nome"></dd>
+</dl>
+
+<form action="">
+    <p>Cadastro de usuario</p>
+    <label for="nome">Nome:</label>
+    <input id="nome" type="text" placeholder="Digite seu nome">
+    <label for="email">Email:</label>
+    <input id="email" type="text" placeholder="Digite seu email">
+</form>
+<button onclick="ajaxcreate()">Cadastrar usuario</button>
+</body>
+</html>
