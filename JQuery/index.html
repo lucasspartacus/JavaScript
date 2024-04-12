@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			crossorigin="anonymous">
+    </script>
+    <style>
+        .vermelha{
+            color: white;
+            background-color: #F00;
+        }
+        .hover{
+            color : 'white';
+            background-color: #00F;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){//semelhante ao onload do Js
+            $('#btn').click(function(){
+                alert('Exemplo jquery');
+            });
+            $('div #p1').html('<strong>Novo</strong> paragrafo');
+    
+            $('#btnclasse').click(function(){
+                $('div p').filter(':even').addClass('vermelha');
+            });
+            console.log($('div p').css('color'));
+            console.log($('p').length); //imprime o números de elementos do tipo p 
+            //console.log(document.getElementById('btn')); 
+            $('p').hover( function(){
+                $(this).toggleClass('hover');
+            });
+        });
+        /* Exemplo sem JQuery-------------------------------------------------------------------------------------
+        onload = () =>{
+            btn.onclick = () =>{
+                alert('Não faz nada com onload')
+            }       
+        }*/
+    </script>
+</head>
+<body>
+    <h1>JQuery</h1>
+    <button id="btn">Exemplo jquery</button>
+    <button id="btnclasse">Adicionar classe</button>
+    <div>
+        <p id="p1">Paragrafo 1</p>
+        <p id="p2">Paragrafo 2</p>
+        <p id="p3">Paragrafo 3</p>
+</body>
+</html>
