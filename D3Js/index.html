@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="grafico.css">
+    <script src="grafico.js"></script>
+    <title>D3js</title>
+    <style>
+      /*#grafico div{
+            background-color: aqua;
+            margin-bottom: 5px;
+            padding: 5px;
+            text-align: right;
+        }*/
+
+    </style>
+    <script>
+         onload = () =>{
+           /* d3.select('#grafico')
+            .selectAll('div')
+            .data([10, 20, 30, 40, 50])
+            .enter()
+            .append('div')
+            .text((d)=>d)
+            .style('width',(d) => d*10+'px');*/
+            
+            let dados = [156, 273, 120, 115, 44, 260, 133];
+            grafico({
+                seletor: '#grafico',
+                dados: dados,
+                altura: 600,
+                largura: 400
+            })
+        }
+
+       
+    </script>
+</head>
+<body>
+    <h1>D3js</h1>
+    <!--<div id="grafico"></div>-->
+    <svg id="grafico"></svg>
+</body>
+</html>
