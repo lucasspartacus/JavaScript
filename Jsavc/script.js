@@ -80,7 +80,7 @@ function dialogo(idioma){
 let ola = dialogo('en');
 ola('Lucas');
 
-
+/*
 function criaContador(){
     let n =0;
     function altera(v){
@@ -104,7 +104,67 @@ contador.incremente(); console.log(contador.valor());
 contador.incremente(); console.log(contador.valor());
 contador.decrementa(); console.log(contador.valor());
 contador.incremente(); console.log(contador.valor());
+*/
+
+//Prototipo
+//Exemplo de herança usando classe
+
+/*
+class forma{
+    constructor(x, y){
+        this.x = x;
+        this.y = y;
+    }
+    move(dx, dy){
+        this.x += dx;
+        this.y += dy;
+    }
+}
+
+class retangulo extends forma{
+    constructor(x, y, a, l){
+        super(x, y)
+        this.altura = a;
+        this.largura = l;
+    } 
+} 
+
+let r1= new retangulo(10, 15, 100, 50);
+r1.move(15,15);
+console.log(r1);
+
+*/
+
+//Criação de uma biblioteca
+
+let $ = (function(){
+    let contadors = [];
+
+    function contador(i){
+        if (contadors[i] === undefined) {
+            contadors[i]=0;
+        }
+        this.incrementa = function(){
+            contadors[i]++;
+        }
+        this.decrementa = function(){
+            contadors[i]--;
+        }
+        this.valor = function(){
+            return contadors[i];
+        };
+    }
+
+    return function(i){
+        return new contador(i);
+    };
+})();
 
 
-
+let c = $(3);
+c.incrementa();
+c.incrementa();
+c.decrementa();
+c.incrementa();
+console.log(c.valor());
 console.log('Fin');
